@@ -76,7 +76,7 @@ describe('authentication', () => {
     // arrange
     let bundle = {
       authData: {
-        access_token: process.env.ACCESS_TOKEN,
+        sessionKey: process.env.ACCESS_TOKEN,
       },
     };
 

@@ -15,10 +15,12 @@ const perform = async (z, bundle) => {
     const results = response.json;
     // z.console.log('results',results)
 
-    bundle.authData.access_token = bundle.authData.storage_key
+    const access_token = results[bundle.authData.storage_key]
+    // z.console.log('access_token',access_token)
+    bundle.authData.access_token = access_token
 
     return {
-      'sessionKey': results[bundle.authData.storage_key]
+      'sessionKey': access_token
     };
 
   });
@@ -31,9 +33,11 @@ const test = async (z, bundle) => {
     url: 'https://api.fuelcloud.com/rest/v1.0/timezones',
     method: 'GET',
     headers: {
-      Authorization: '{{bundle.authData.access_token}}',
+      Authorization: bundle.authData.sessionKey,
     },
   };
+
+  // z.console.log('options',options)
 
   return z.request(options).then((response) => {
 
