@@ -14,14 +14,17 @@ module.exports = {
   },
   searches: { [findDriversSearch.key]: findDriversSearch },
   searchOrCreates: {
-    find_drivers: {
-      create: 'create_driver',
+    [findDriversSearch.key]: {
+      // The key must match the search
+      key: findDriversSearch.key, // same as above
+      create: createDriverCreate.key,
       display: {
-        description: 'Find a Driver in FuelCloud',
-        label: 'Find or Create Driver',
+        // The label shows up when the search-or-create checkbox is checked.
+        // See https://cdn.zappy.app/5fc31d104c6bd0050c44510557b3b98f.png
+        label: 'Find a Driver in FuelCloud',
+        description: 'ignored',
       },
-      key: 'find_driver',
-      search: 'find_driver',
+      search: findDriversSearch.key,
     },
   },
 };
