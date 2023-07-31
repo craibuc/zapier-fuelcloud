@@ -6,7 +6,7 @@ const perform = async (z, bundle) => {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: bundle.authData.access_token,
+      Authorization: bundle.authData.sessionKey,
     },
     params: {
       'filter[code]': bundle.inputData.Code,
@@ -139,7 +139,7 @@ module.exports = {
       access_groups: [],
     },
     outputFields: [
-      { key: 'id' },
+      { key: 'id', type: 'integer' },
       { key: 'full_name' },
       { key: 'pin', type: 'integer' },
       { key: 'phone' },

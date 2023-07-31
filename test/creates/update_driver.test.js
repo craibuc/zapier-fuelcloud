@@ -9,7 +9,7 @@ describe('Create - activate_driver', () => {
   it('should create an object', async () => {
     const bundle = {
       authData: {
-        access_token: process.env.ACCESS_TOKEN,
+        sessionKey: process.env.ACCESS_TOKEN,
       },
       inputData: {
         id: 716627,

@@ -9,7 +9,7 @@ describe('Search - find_drivers', () => {
   it('should get an array', async () => {
     const bundle = {
       authData: {
-        access_token: process.env.ACCESS_TOKEN,
+        sessionKey: process.env.ACCESS_TOKEN,
       },
       inputData: {
         code: 'AA0000'
