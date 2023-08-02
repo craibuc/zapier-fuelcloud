@@ -8,15 +8,12 @@ const perform = async (z, bundle) => {
       'X-Secret': bundle.authData.storage_secret
     },
   }
-  // z.console.log('options',options)
 
   return z.request(options).then((response) => {
 
     const results = response.json;
-    // z.console.log('results',results)
 
-    const access_token = results[bundle.authData.storage_key]
-    // z.console.log('access_token',access_token)
+    const access_token = bundle.authData.storage_child_key ? results[bundle.authData.storage_key][bundle.authData.storage_child_key] : results[bundle.authData.storage_key]
     bundle.authData.access_token = access_token
 
     return {
@@ -69,7 +66,15 @@ module.exports = {
       label: 'Storage Key',
       type: 'string',
       required: true,
-      helpText: 'The name of the storage key that contains the FuelCloud Access Token.',
+      helpText: 'The name of the storage key that contains the Access Token.',
+      computed: false,
+    },
+    {
+      key: 'storage_child_key',
+      label: 'Storage Child Key',
+      type: 'string',
+      required: false,
+      helpText: 'The optional name of the subkey that contains the Access Token.',
       computed: false,
     },
   ],
