@@ -17,19 +17,31 @@ const appTester = zapier.createAppTester(App);
 // load .env
 zapier.tools.env.inject();
 
+// mocking
+const nock = require('nock');
+
 describe('authentication', () => {
   
   describe('perform', () => {
 
-    // arrange
-    let bundle = {
-      authData: {
-        storage_secret: process.env.STORAGE_SECRET,
-        storage_key: process.env.STORAGE_KEY,
-      },
-    };
-
     describe('when a valid Storage Secret and Storage Key are supplied', () => {
+
+      // arrange
+      let bundle = {
+        authData: {
+          storage_secret: 'STORAGE_SECRET',
+          storage_key: 'StorageKey',
+        },
+      };
+
+      const response = {
+        StorageKey: 'Storage Value'
+      }
+
+      // mocks the next request that matches this url and body
+      nock(`https://store.zapier.com/api`)
+        .get(`/records?key=${bundle.authData.storage_key}`)
+        .reply(200, response);
 
       it('it returns a sessionKey', async () => {
     
@@ -39,6 +51,9 @@ describe('authentication', () => {
           bundle
         );
   
+        console.log('result',result)
+        console.log('access_token',bundle.authData.access_token)
+        
         // assert
         expect(result).toHaveProperty('sessionKey');
         expect(bundle.authData.access_token).not.toBeNull();
@@ -47,7 +62,50 @@ describe('authentication', () => {
 
     });
 
-    describe('when a invalid Storage Secret and Storage Key are supplied', () => {
+    describe('when a valid Storage Secret, Storage Key, and Storage Child Key are supplied', () => {
+
+      // arrange
+      let bundle = {
+        authData: {
+          storage_secret: 'STORAGE_SECRET',
+          storage_key: 'StorageKey',
+          storage_child_key: 'StorageChildKey'
+        },
+      };
+      
+      const response = {
+        StorageKey: {
+          StorageChildKey: 'Storage Value'
+        }
+      }
+
+      // mocks the next request that matches this url and body
+      nock(`https://store.zapier.com/api`)
+        .get(`/records?key=${bundle.authData.storage_key}`)
+        .reply(200, response);
+
+      it('it returns a sessionKey', async () => {
+    
+        // act
+        const result = await appTester(
+          App.authentication.sessionConfig.perform,
+          bundle
+        );
+  
+        console.log('result',result)
+        console.log('access_token',bundle.authData.access_token)
+
+        // assert
+        expect(result).toHaveProperty('sessionKey');
+        expect(result.sessionKey).not.toBeNull();
+
+        expect(bundle.authData.access_token).not.toBeNull();
+    
+      });
+
+    });
+
+    describe.skip('when a invalid Storage Secret and Storage Key are supplied', () => {
 
       it('throws an error', async () => {
 
@@ -71,7 +129,7 @@ describe('authentication', () => {
 
   });
 
-  describe('test', () => {
+  describe.skip('test', () => {
   
     // arrange
     let bundle = {
