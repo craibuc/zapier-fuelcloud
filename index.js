@@ -1,7 +1,9 @@
 const authentication = require('./authentication');
 
 const createDriverCreate = require('./creates/create_driver.js');
+const refreshTokenCreate = require('./creates/refresh_token.js');
 const updateDriverCreate = require('./creates/update_driver.js');
+
 const findDriversSearch = require('./searches/find_driver.js');
 
 module.exports = {
@@ -10,6 +12,7 @@ module.exports = {
   authentication: authentication,
   creates: {
     [createDriverCreate.key]: createDriverCreate,
+    [refreshTokenCreate.key]: refreshTokenCreate,
     [updateDriverCreate.key]: updateDriverCreate,
   },
   searches: { [findDriversSearch.key]: findDriversSearch },
