@@ -42,12 +42,12 @@ module.exports = {
       },
     ],
     sample: {
-      id: 404124,
-      fullname: 'Weidner, Jason',
-      full_name: 'Weidner, Jason',
-      pin: '19672',
+      id: 123456,
+      fullname: 'Last, First',
+      full_name: 'Last, First',
+      pin: '12345',
       phone: null,
-      code: 'JW9672',
+      code: 'FL2345',
       status: 0,
       schedule: {
         mon: {
@@ -125,7 +125,7 @@ module.exports = {
       tanks: [],
       all_vehicles: true,
       vehicles: [],
-      self: 'https://api.fuelcloud.com/rest/v1.0/driver/404124',
+      self: 'https://api.fuelcloud.com/rest/v1.0/driver/123456',
       created: '2018-11-02 16:01:59',
       updated: '2020-11-03 14:43:42',
       limits: null,
