@@ -13,7 +13,7 @@ const perform = async (z, bundle) => {
 
     const results = response.json;
 
-    const access_token = bundle.authData.storage_child_key ? results[bundle.authData.storage_key][bundle.authData.storage_child_key] : results[bundle.authData.storage_key]
+    const access_token = bundle.authData.storage_child_key ? results[bundle.authData.storage_key][bundle.authData.storage_child_key]['value'] : results[bundle.authData.storage_key]
     bundle.authData.access_token = access_token
 
     return {
