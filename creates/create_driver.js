@@ -69,12 +69,12 @@ module.exports = {
       },
     ],
     sample: {
-      id: 675108,
-      fullname: 'Craig B',
-      full_name: 'Craig B',
+      id: 123456,
+      fullname: 'Last, First',
+      full_name: 'Last, First',
       pin: '12345',
       phone: '612-555-1212',
-      code: 'cb2215',
+      code: 'LF2345',
       status: 1,
       schedule: {
         mon: {
@@ -152,7 +152,7 @@ module.exports = {
       tanks: [],
       all_vehicles: true,
       vehicles: [],
-      self: 'https://api.fuelcloud.com/rest/v1.0/driver/675108',
+      self: 'https://api.fuelcloud.com/rest/v1.0/driver/123456',
       created: '2023-02-20 16:13:09',
       updated: '2023-02-20 16:13:09',
       limits: null,
