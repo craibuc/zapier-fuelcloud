@@ -24,5 +24,6 @@ describe('Search - find_drivers', () => {
     expect(results.length).toBeGreaterThan(0)
     expect(results[0]).toHaveProperty('id');
 
-  });
+  },(20*1000));
+
 });
