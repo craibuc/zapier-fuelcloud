@@ -5,6 +5,7 @@ const refreshTokenCreate = require('./creates/refresh_token.js');
 const updateDriverCreate = require('./creates/update_driver.js');
 
 const findDriversSearch = require('./searches/find_driver.js');
+const findDriverByPinSearch = require('./searches/find_driver_by_pin.js');
 
 module.exports = {
   version: require('./package.json').version,
@@ -15,7 +16,10 @@ module.exports = {
     [refreshTokenCreate.key]: refreshTokenCreate,
     [updateDriverCreate.key]: updateDriverCreate,
   },
-  searches: { [findDriversSearch.key]: findDriversSearch },
+  searches: { 
+    [findDriversSearch.key]: findDriversSearch,
+    [findDriverByPinSearch.key]: findDriverByPinSearch
+  },
   searchOrCreates: {
     [findDriversSearch.key]: {
       // The key must match the search
