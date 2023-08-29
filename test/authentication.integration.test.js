@@ -39,6 +39,8 @@ describe('authentication', () => {
           bundle
         );
   
+        console.log('result',result)
+
         // assert
         expect(result).toHaveProperty('sessionKey');
         expect(result.sessionKey).not.toBeNull();
@@ -61,6 +63,8 @@ describe('authentication', () => {
           bundle
         );
   
+        console.log('result',result)
+        
         // assert
         expect(result).toHaveProperty('sessionKey');
         expect(result.sessionKey).not.toBeNull();
